@@ -84,22 +84,22 @@ export default function BentoGrid() {
           <motion.div
             key={index}
             variants={itemVariants}
-            className={`glass-card p-8 md:p-10 flex flex-col justify-between group hover:border-cobalt-blue/40 transition-all duration-300 hover:bg-white/[0.05] relative overflow-hidden ${item.colSpan}`}
+            className={`glass-card p-6 md:p-10 flex flex-col justify-between group hover:border-cobalt-blue/40 transition-all duration-300 hover:bg-white/[0.05] relative overflow-hidden ${item.colSpan}`}
           >
             {/* Subtle light effect on hover */}
             <div className="absolute inset-0 bg-gradient-to-br from-cobalt-blue/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-            <div className="flex justify-between items-start mb-12 relative z-10">
-              <div className="bg-white/5 p-4 rounded-2xl text-white group-hover:text-cobalt-blue group-hover:scale-110 transition-all duration-300 border border-white/10 group-hover:border-cobalt-blue/30 shadow-lg group-hover:shadow-[0_0_20px_rgba(0,71,255,0.2)]">
-                <item.icon size={28} strokeWidth={1.5} />
+            <div className="flex justify-between items-start mb-8 md:mb-12 relative z-10">
+              <div className="bg-white/5 p-3 md:p-4 rounded-2xl text-white group-hover:text-cobalt-blue group-hover:scale-110 transition-all duration-300 border border-white/10 group-hover:border-cobalt-blue/30 shadow-lg group-hover:shadow-[0_0_20px_rgba(0,71,255,0.2)]">
+                <item.icon size={24} className="md:w-7 md:h-7" strokeWidth={1.5} />
               </div>
-              <span className="text-xs font-semibold uppercase tracking-widest bg-white/5 text-steel-light px-4 py-1.5 rounded-full border border-white/5 group-hover:border-cobalt-blue/20 group-hover:text-blue-300 transition-colors">
+              <span className="text-[10px] md:text-xs font-semibold uppercase tracking-widest bg-white/5 text-steel-light px-3 py-1 md:px-4 md:py-1.5 rounded-full border border-white/5 group-hover:border-cobalt-blue/20 group-hover:text-blue-300 transition-colors">
                 {t.expertise}
               </span>
             </div>
             <div className="relative z-10">
-              <h3 className="text-2xl font-semibold mb-3 tracking-tight">{item.title}</h3>
-              <p className="text-steel-light text-lg font-light leading-relaxed">{item.description}</p>
+              <h3 className="text-xl md:text-2xl font-semibold mb-2 md:mb-3 tracking-tight">{item.title}</h3>
+              <p className="text-steel-light text-base md:text-lg font-light leading-relaxed">{item.description}</p>
             </div>
           </motion.div>
         ))}
