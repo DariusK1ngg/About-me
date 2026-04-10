@@ -14,11 +14,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className="scroll-smooth">
-      <body className="antialiased min-h-screen bg-obsidian text-white relative">
+      <body className="antialiased bg-obsidian text-white relative overflow-x-hidden">
         <Providers>
           {/* Subtle background glow */}
-          <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-cobalt-blue/20 blur-[120px] pointer-events-none z-[-1]" />
-          <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-blue-900/10 blur-[120px] pointer-events-none z-[-1]" />
+          <div className="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-cobalt-blue/20 blur-[120px] pointer-events-none z-[-1]" />
+          <div className="fixed bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-blue-900/10 blur-[120px] pointer-events-none z-[-1]" />
           {children}
         </Providers>
       </body>

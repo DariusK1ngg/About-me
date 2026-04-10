@@ -53,7 +53,7 @@ export default function Footer() {
   return (
     <motion.footer
       id="contact"
-      className="mt-10 pt-8 pb-6 border-t border-white/10 flex flex-col gap-10 relative"
+      className="py-10 border-t border-white/10 flex flex-col gap-10 relative"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
