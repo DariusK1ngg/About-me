@@ -1,33 +1,42 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useLanguage } from "@/hooks/useLanguage";
+import { SquareCode, Languages } from "lucide-react";
 
 export default function Navbar() {
   const { language, toggleLanguage } = useLanguage();
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 p-4 md:p-6 flex justify-end items-center pointer-events-none">
-      <div 
-        className="pointer-events-auto bg-white/5 border border-white/10 backdrop-blur-md rounded-full p-1 flex items-center shadow-lg relative cursor-pointer scale-90 md:scale-100 origin-right transition-transform" 
-        onClick={toggleLanguage}
-      >
-        {/* Animated Background Indicator */}
-        <motion.div
-          className="absolute left-1 w-[40px] md:w-[50px] h-[28px] md:h-[32px] bg-cobalt-blue rounded-full shadow-[0_0_15px_rgba(0,71,255,0.4)]"
-          layout
-          initial={false}
-          animate={{ x: language === 'es' ? 0 : (language === 'en' ? (typeof window !== 'undefined' && window.innerWidth < 768 ? 40 : 50) : 0) }}
-          transition={{ type: "spring", stiffness: 400, damping: 30 }}
-        />
-        
-        <div className={`relative z-10 w-[40px] md:w-[50px] text-center text-xs md:text-sm font-bold transition-colors duration-300 py-1.5 ${language === 'es' ? 'text-white' : 'text-steel-light'}`}>
-          ES
-        </div>
-        <div className={`relative z-10 w-[40px] md:w-[50px] text-center text-xs md:text-sm font-bold transition-colors duration-300 py-1.5 ${language === 'en' ? 'text-white' : 'text-steel-light'}`}>
-          EN
+    <header className="fixed top-0 left-0 right-0 z-50 bg-[#05070A]/85 backdrop-blur-md border-b border-slate-800/80 px-4 py-3 md:px-8">
+      <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+        {/* Left: Brand / Title */}
+        <a href="#" className="text-sm font-bold tracking-tight text-white hover:text-cyber-cyan transition-colors">
+          Dario Avalos
+        </a>
+
+        {/* Right: Controls (Terminal Link & Language Toggle using main sans font) */}
+        <div className="flex items-center gap-3">
+          <a
+            href="#terminal-section"
+            className="flex items-center gap-2 text-xs font-semibold tracking-tight text-slate-200 hover:text-cyber-cyan bg-slate-900 border border-slate-700 hover:border-cyber-cyan/50 px-3.5 py-2 rounded-xl transition-all"
+          >
+            <SquareCode size={15} className="text-cyber-cyan" />
+            <span>{language === "es" ? "Terminal CLI" : "CLI Terminal"}</span>
+          </a>
+
+          {/* Language Switcher using main sans font - No hover rotate animation */}
+          <button
+            onClick={toggleLanguage}
+            className="flex items-center gap-2 bg-slate-900 border border-slate-700 hover:border-cyber-cyan/50 text-slate-200 px-3.5 py-2 rounded-xl transition-all text-xs font-semibold tracking-tight"
+            title={language === "es" ? "Cambiar Idioma / Switch Language" : "Switch Language"}
+          >
+            <Languages size={15} className="text-cyber-cyan" />
+            <span className={language === 'es' ? 'text-white font-bold' : 'text-slate-400'}>ES</span>
+            <span className="text-slate-600">/</span>
+            <span className={language === 'en' ? 'text-white font-bold' : 'text-slate-400'}>EN</span>
+          </button>
         </div>
       </div>
-    </nav>
+    </header>
   );
 }

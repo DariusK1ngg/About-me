@@ -1,11 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Github, Linkedin, Copy, Check } from "lucide-react";
 import { useState } from "react";
+import { Github, Linkedin, Copy, Check, MailCheck, Send } from "lucide-react";
 import { useLanguage } from "@/hooks/useLanguage";
 
-const WhatsappIcon = ({ size = 22, className = "" }) => (
+const WhatsappIcon = ({ size = 20, className = "" }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={size}
@@ -31,81 +30,84 @@ export default function Footer() {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const content = {
-    es: {
-      title: "Listos para construir algo excepcional.",
-      subtitle: "Ponte en contacto para discutir tu próximo proyecto.",
-      copied: "Email Copiado",
-      copy: "Copiar Email",
-      copyright: "© Todos los derechos reservados 2026 — Ingeniero de Software"
-    },
-    en: {
-      title: "Ready to build something exceptional.",
-      subtitle: "Get in touch to discuss your next project.",
-      copied: "Email Copied",
-      copy: "Copy Email",
-      copyright: "© All rights reserved 2026 — Software Engineer"
-    }
-  };
-
-  const t = content[language];
-
   return (
-    <motion.footer
-      id="contact"
-      className="py-10 border-t border-white/10 flex flex-col gap-10 relative"
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8 }}
-    >
-      <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-        <div className="flex flex-col gap-3 text-center md:text-left">
-          <h2 className="text-3xl font-bold tracking-tight">{t.title}</h2>
-          <p className="text-steel-light text-lg font-light">{t.subtitle}</p>
+    <footer id="contact" className="mt-16 border-t border-slate-800 bg-[#070B12] pt-12 pb-8 text-slate-300">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col gap-10">
+        
+        {/* Upper Call to Action & Card */}
+        <div className="glass-card p-6 md:p-8 bg-[#0C1524] border-slate-700/80 flex flex-col lg:flex-row items-center justify-between gap-6">
+          <div className="space-y-2 text-center lg:text-left">
+            <div className="flex items-center justify-center lg:justify-start gap-2 text-cyber-cyan font-bold text-xs uppercase tracking-widest">
+              <Send size={14} />
+              <span>{language === "es" ? "Inicio de Protocolo de Contacto" : "Contact Protocol Initiated"}</span>
+            </div>
+            <h3 className="text-2xl md:text-3xl font-bold text-white tracking-tight">
+              {language === "es" ? "¿Construimos o integramos tu próximo proyecto?" : "Shall we build or integrate your next project?"}
+            </h3>
+            <p className="text-slate-200 text-sm font-medium max-w-xl leading-relaxed">
+              {language === "es"
+                ? "Disponible para proyectos en Oracle Forms/Reports (11g/19c), desarrollo web Full Stack a medida y automatización de procesos empresariales."
+                : "Available for Oracle Forms/Reports (11g/19c) systems, custom Full Stack web development, and enterprise process automation."}
+            </p>
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center gap-3 shrink-0">
+            <button
+              onClick={copyEmail}
+              className="flex items-center gap-2 bg-slate-900 border border-slate-700 hover:border-cyber-cyan text-cyber-cyan px-4 py-3 rounded-xl font-semibold tracking-tight text-xs transition-colors"
+            >
+              {copied ? <Check size={15} className="text-emerald-400" /> : <Copy size={15} />}
+              <span>{copied ? (language === "es" ? "Copiado al Portapapeles" : "Copied to Clipboard") : email}</span>
+            </button>
+
+            <a
+              href={`mailto:${email}`}
+              className="flex items-center gap-2 bg-cobalt-blue hover:bg-blue-600 text-white font-bold tracking-tight px-5 py-3 rounded-xl text-xs transition-colors shadow-lg shadow-cobalt-blue/20"
+            >
+              <MailCheck size={15} />
+              <span>{language === "es" ? "Enviar Correo" : "Send Email"}</span>
+            </a>
+          </div>
         </div>
 
-        <div className="flex flex-wrap justify-center items-center gap-4">
-        <a
-          href="https://github.com/DariusK1ngg"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="p-4 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 hover:text-cobalt-blue hover:border-cobalt-blue/30 transition-all duration-300 shadow-lg"
-          aria-label="GitHub Profile"
-        >
-          <Github size={22} strokeWidth={1.5} />
-        </a>
-        <a
-          href="https://www.linkedin.com/in/dario-avalos-927b56307/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="p-4 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 hover:text-cobalt-blue hover:border-cobalt-blue/30 transition-all duration-300 shadow-lg"
-          aria-label="LinkedIn Profile"
-        >
-          <Linkedin size={22} strokeWidth={1.5} />
-        </a>
-        <a
-          href="https://wa.me/595981279526"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="p-4 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 hover:text-green-400 hover:border-green-400/30 transition-all duration-300 shadow-lg"
-          aria-label="WhatsApp Contact"
-        >
-          <WhatsappIcon size={22} className="opacity-80 group-hover:opacity-100 transition-opacity" />
-        </a>
-        <button
-          onClick={copyEmail}
-          className="flex items-center gap-3 px-6 py-4 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 hover:border-cobalt-blue/30 transition-all duration-300 text-sm font-medium tracking-wide shadow-lg"
-        >
-          {copied ? <Check size={18} className="text-green-400" /> : <Copy size={18} />}
-          {copied ? <span className="text-green-400">{t.copied}</span> : <span>{t.copy}</span>}
-        </button>
+        {/* Lower Links & Copyright (Main Sans Font) */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-slate-800/60 font-sans text-xs font-semibold text-slate-300 tracking-tight">
+          <div className="flex items-center gap-5">
+            <a
+              href="https://github.com/DariusK1ngg"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-cyber-cyan transition-colors flex items-center gap-1.5"
+            >
+              <Github size={16} />
+              <span>GitHub</span>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/dario-avalos-927b56307/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-cyber-cyan transition-colors flex items-center gap-1.5"
+            >
+              <Linkedin size={16} />
+              <span>LinkedIn</span>
+            </a>
+            <a
+              href="https://wa.me/595981279526"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-emerald-400 transition-colors flex items-center gap-1.5"
+            >
+              <WhatsappIcon size={16} />
+              <span>WhatsApp</span>
+            </a>
+          </div>
+
+          <div className="text-slate-300 font-medium text-center sm:text-right">
+            © 2026 Dario Avalos — {language === "es" ? "Ingeniero Informático | Enterprise & Modern Full Stack" : "Computer Engineer | Enterprise & Modern Full Stack"}
+          </div>
+        </div>
+
       </div>
-      </div>
-      
-      <div className="text-center text-steel-light/60 text-sm font-light mt-4">
-        {t.copyright}
-      </div>
-    </motion.footer>
+    </footer>
   );
 }
