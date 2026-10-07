@@ -1,19 +1,25 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import TechBands from "@/components/TechBands";
 import BridgeArchitecture from "@/components/BridgeArchitecture";
-import CodeWorkbench from "@/components/CodeWorkbench";
+import TerminalSection from "@/components/TerminalSection";
 import TechnicalMetrics from "@/components/TechnicalMetrics";
 import Footer from "@/components/Footer";
+import Mascots from "@/components/Mascots";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#05070A] text-slate-100 selection:bg-cyber-cyan selection:text-slate-950 font-sans">
+    <div className="min-h-screen font-sans">
       <Navbar />
-      <main className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col gap-12 pt-6">
+      <Mascots />
+      <main>
         <Hero />
-        <BridgeArchitecture />
-        <CodeWorkbench />
-        <TechnicalMetrics />
+        <TechBands />
+        <div className="max-w-[1400px] mx-auto gutter flex flex-col gap-28 md:gap-40 py-24 md:py-36">
+          <BridgeArchitecture />
+          <TerminalSection />
+          <TechnicalMetrics />
+        </div>
       </main>
       <Footer />
     </div>

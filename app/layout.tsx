@@ -1,6 +1,15 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Providers } from "./providers";
+import ScrollProgress from "@/components/ui/ScrollProgress";
 import "./globals.css";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#0D0C0A",
+  colorScheme: "dark",
+};
 
 export const metadata: Metadata = {
   title: "Ingeniero en Informática | Full Stack Developer",
@@ -14,11 +23,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className="scroll-smooth">
-      <body className="antialiased bg-obsidian text-white relative overflow-x-hidden">
+      <body className="antialiased bg-ink text-bone relative">
         <Providers>
-          {/* Subtle background glow */}
-          <div className="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-cobalt-blue/20 blur-[120px] pointer-events-none z-[-1]" />
-          <div className="fixed bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-blue-900/10 blur-[120px] pointer-events-none z-[-1]" />
+          <ScrollProgress />
+          <div aria-hidden className="fixed inset-0 z-[-1] pointer-events-none">
+            <div className="absolute inset-0 bg-columns" />
+            <div className="absolute inset-0 bg-noise" />
+          </div>
           {children}
         </Providers>
       </body>
